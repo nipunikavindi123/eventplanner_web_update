@@ -1,0 +1,178 @@
+.blog .card-title {
+    margin-bottom: 0;
+}
+.blog .blog-item h3 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.blog .blog-item .meta * {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #999999;
+}
+
+.blog .blog-item .meta i {
+    margin: 0 5px 0 10px;
+}
+.blog .card-body {
+    padding: 0;
+}
+.blog .card {
+    border: none;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+}
+h1,
+h2, 
+h3, 
+h4,
+h5, 
+h6 {
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    color: #121518;
+}
+
+.hedding1 span{
+    padding-top: 1.5rem;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-family: 'Catamaran', sans-serif;
+    letter-spacing: 0.2rem;
+    color:black;
+    display:inline-block;
+    position:relative;
+    opacity: .8;
+}
+.hedding1 span::after{
+    content:'';
+    border-radius: 1rem;
+    height:4px;
+    width:20%;
+    background:#aa9166;
+    position:absolute;
+    left:calc(50% - 10%);
+    bottom:-5px;
+}
+.blog .pagination .page-link {
+    color: #121518;
+    border-radius: 0;
+    border-color: #aa9166;
+}
+
+.blog .pagination .page-link:hover,
+.blog .pagination .page-item.active .page-link {
+    color: #121518;
+    background: #aa9166;
+}
+
+.blog .pagination .disabled .page-link {
+    color: #999999;
+}
+.blog .blog-item a.btn {
+    padding: 0;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #aa9166;
+    transition: .3s;
+}
+
+.blog .blog-item a.btn i {
+    margin-left: 10px;
+}
+
+.blog .blog-item a.btn:hover {
+    color: #121518;
+}
+/*******************************/
+/******* Page Header CSS *******/
+/*******************************/
+.page-header {
+    position: relative;
+    margin-bottom: 45px;
+    padding: 90px 0;
+    text-align: center;
+    background: #aa9166;
+}
+
+.page-header h2 {
+    position: relative;
+    color: #121518;
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+.page-header h2::after {
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 2px;
+    left: calc(50% - 50px);
+    bottom: 0;
+    background: #121518;
+}
+
+.page-header a {
+    position: relative;
+    padding: 0 12px;
+    font-size: 22px;
+    color: #121518;
+}
+
+.page-header a:hover {
+    color: #ffffff;
+}
+
+.page-header a::after {
+    position: absolute;
+    content: "/";
+    width: 8px;
+    height: 8px;
+    top: -2px;
+    right: -7px;
+    text-align: center;
+    color: #121518;
+}
+
+.page-header a:last-child::after {
+    display: none;
+}
+
+@media (max-width: 767.98px) {
+    .page-header h2 {
+        font-size: 35px;
+    }
+    
+    .page-header a {
+        font-size: 18px;
+    }
+}
+.section-header {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 45px;
+}
+/* .card-text h6{
+    color:#aa9166;
+} */
+
+.page-bot p{
+    margin-left: 40px;
+    margin-right: 40px;
+    
+}
+.page-bot h5{
+    margin-left: 20px;
+}
+.page-bot h2{
+    margin-left: 20px;
+}

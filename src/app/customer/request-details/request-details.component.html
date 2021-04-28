@@ -1,0 +1,91 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+           <div class="card">
+               <div class="card-header">
+                 <a routerLink="/customer/dashboard" class="btn btn-md btn-primary float-left">Back</a>
+                 <span class="float-right">Request Details</span>
+                 <div class="clearfix"></div>
+                </div>
+               <div class="card-body">
+
+
+                  <div *ngIf="payment_success">
+                    <div class="alert alert-success">
+                        Payment successful! <br>
+                        Check your email for your receipt.
+                    </div>
+                </div>
+
+                <div *ngIf="payment_error">
+                    <div class="alert alert-danger">
+                        We couldn't process your payment. please take a moment to review your billing information.
+                    </div>
+                </div>
+
+
+                   <div class="card mb-3">
+                       <div class="row no-gutters">
+                        <div class="col-md-4">
+                          <img [src]="order.supplier_id.avatar.url" class="card-img" style="width: 100px;">
+                        </div>
+                         <div class="col-md-4">
+                           <div class="card-body">
+                            <h5 class="card-title">{{ order.supplier_id.first_name + " " + order.supplier_id.last_name }}</h5>
+                            <p class="card-text">Rs .{{ order.supplier_id.amount }}</p>
+                           </div>
+                         </div>
+                         <div class="col-md-4">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ order.date}}</h5>
+                            <p class="card-text">{{ order.time }}</p>
+                           </div>
+                         </div>
+                       </div>
+                   </div>
+
+                   <div class="card" *ngIf="order.payment.status == 'pending'">
+                    <div class="card-body">
+                      <p>Make your payment via Paypal : </p>
+                      <ngx-paypal  [config]="payPalConfig"></ngx-paypal>
+                    </div>
+                  </div>
+
+                  <div class="card" *ngIf="order.payment.status == 'confirmed'">
+                    <div class="card-body">
+                       <p>Payment Details :</p>
+                      <table class="table table-striped">
+                        <tbody>
+                          <tr>
+                            <th>Transition ID</th>
+                            <td>{{ order.payment.details.transition_id }}</td>
+                          </tr>
+                          <tr>
+                            <th>Amount</th>
+                            <td>{{ order.payment.details.amount }}</td>
+                          </tr>
+                          <tr>
+                            <th>Date</th>
+                            <td>{{ order.payment.details.date | date}}</td>
+                          </tr>
+                          <tr>
+                            <th>Name</th>
+                            <td>{{ order.payment.details.name }}</td>
+                          </tr>
+                          <tr>
+                            <th>Email</th>
+                            <td>{{ order.payment.details.email }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+
+               </div>
+           </div>
+        </div>
+    </div>
+</div>

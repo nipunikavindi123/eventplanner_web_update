@@ -1,0 +1,88 @@
+.logoimage{
+    height: 3rem;
+}
+.navbar-brand {
+    padding: 0;
+    margin: 0;
+}
+.nav-item{
+    text-transform: uppercase;
+}
+#navbarSupportedContent{
+    margin-right: 2rem;
+    letter-spacing: 0.1rem;
+}
+.nav-link {
+    margin-right: .8rem;
+}
+.dropdown-menu{
+    background-color: rgba(0,0,0,.6);
+}
+.dropdown-menu .dropdown-item{
+    color: white !important;
+}
+.dropdown-menu .dropdown-item:hover {
+    color: white !important;
+    background-color: #aa9166;
+}
+.navbar-dark .navbar-nav .active>.nav-link {
+    color: #aa9166;
+}
+.navbar-dark .navbar-nav .nav-link:hover  {
+    color: #aa9166;
+}
+.modal-content{
+    padding: 32px;
+}
+.w3wide span{
+    display:inline-block;
+    position:relative;
+    color: black;
+    opacity: 0.7;
+    font-family: 'Catamaran', sans-serif;
+}
+.w3wide span::after{
+    content:'';
+    border-radius: 1rem;
+    height:4px;
+    width:20%;
+    background:#49583d;
+    position:absolute;
+    left:calc(50% - 10%);
+    bottom:-5px;
+}
+.w2wide{
+  text-transform: uppercase;
+  font-family: 'Catamaran', sans-serif;
+  margin-top: 0;
+    margin-bottom: 1rem;
+}
+.form-group .btn {
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #aa9166;
+    background: #121518;
+    border: 2px solid white;
+    border-radius: 0;
+    transition: .3s;
+    width: 100%;
+}
+
+.form-group .btn:hover {
+    color: #121518;
+    background: #aa9166;
+    border: 2px solid black;
+}
+
+/* .form-group .btn:active {
+    color:  #aa9166;
+    background: #121518;
+    border: 2px solid #aa9166;
+} */
+
+.modal-content{
+    background-color: #aa9166;
+}

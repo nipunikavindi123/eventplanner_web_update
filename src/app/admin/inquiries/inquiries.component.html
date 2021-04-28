@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <div class="row"> 
+        <div class="col-md-12 mt-5">
+        <div class="col-lg-12" *ngIf="delete_success">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Inquiry has been deleted successfully!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+
+          <table class="table  table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Comment</th>
+                  <th>Manage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let inquiry of inquiries">
+                  <td>{{inquiry.name}}</td>
+                  <td>{{inquiry.email}}</td>
+                  <td>{{inquiry.comment}}</td>
+                  <td>
+                    <button class="btn btn-sm btn-danger"
+                    [swal]="{icon: 'question', title: 'Are you sure want to delete this inquiry?', confirmButtonText: 'Yes', cancelButtonText: 'No',  showCancelButton: true }"
+                    (confirm)="onClickDeleteConfirm(inquiry._id)"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+      

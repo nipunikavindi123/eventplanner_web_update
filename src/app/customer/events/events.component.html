@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+   <div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <select class="form-control"  name="supplier_type" (change)="onClickSupplierType($event)">
+            <option value="">-----Select Supplier type-----</option>
+            <option value="hospitality_partner">Hospitality partners</option>
+            <option value="decorater">Decorations</option>
+            <option value="entertainer">Entertaining</option>
+            <option value="vehicle Hire">Tranceportation</option>
+            <option value="photographer">photography</option>
+          </select>
+    </div>
+   </div>
+
+   
+   <div class="row" *ngIf="supplier_collection?.length > 0 else noEvents">
+
+    <div class="col-md-12 mt-3">
+        <google-map class="agm-map" width="100%" [center]="center"
+        [zoom]="zoom">
+        <map-marker *ngFor="let markerPosition of supplier_collection"
+           [position]="{lat: markerPosition.geolocation.latitude | toNumber , lng: markerPosition.geolocation.longitude | toNumber }"
+           [options]="markerOptions"
+           [title]="markerPosition.first_name + ' ' + markerPosition.last_name"
+           [label]="markerPosition.first_name + ' ' + markerPosition.last_name"
+           >
+         </map-marker>
+        </google-map>
+    </div>
+
+        <div class="col-lg-4 col-md-6 col-xs-12" *ngFor="let sc of supplier_collection">
+            <div class="event">
+                <div class="icon">
+                    <img src="{{ sc.avatar.url }}" style="width:70px">
+                </div>
+                <div class="content">
+                    <h3>{{ sc.first_name + " " + sc.last_name}}</h3>
+                    <div class="tags">
+                        <span>Rs . {{ sc.amount }}</span><br>
+                        <span class="event-type">{{ sc.supplier_type }}</span>
+                    </div>
+                    <a routerLink="/customer/event-request/{{sc._id}}" class="btn-apply">Request Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+    <ng-template #noEvents class="row">
+        <div class="col-md-12 mt-5 text-center">
+            <h3 class="pb-4">No data found. Select another supplier type </h3>
+            <img src="../../../assets/images/no_data.svg" class="img-fluid" style="width: 50%;">
+        </div>
+    </ng-template>
+
+</div>

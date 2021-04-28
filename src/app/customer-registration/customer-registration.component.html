@@ -1,0 +1,203 @@
+<app-navigation></app-navigation>
+<main>
+  <div class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2>Customer Registration</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="blog">
+        <div class="container-fluid">
+            <form (ngSubmit)="onSubmitRegistration($event)" [formGroup]="registrationForm">
+
+                <div class="row rows form-group" *ngIf="registration_success">
+                    <div class="col-lg-4 text-lg-right">
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="alert alert-success">
+                            You have successfully registered!!
+                            <a href="Login">Login here</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row rows form-group">
+                    <div class="col-lg-4 text-lg-right">
+                        <label class="Label">First Name : </label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control"  placeholder="First Name" name="first_name" formControlName="first_name" required>
+                        <div *ngIf="registrationForm.get('first_name').invalid &&  registrationForm.get('first_name').errors &&  (registrationForm.get('first_name').dirty || registrationForm.get('first_name').touched)">
+                            <div class="alert alert-danger"
+                                *ngIf="registrationForm.get('first_name').hasError('required')">
+                                First name is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rows form-group">
+                    <div class="col-lg-4 text-lg-right">
+                        <label class="Label">Last Name : </label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control"  name="last_name" placeholder="Last Name" formControlName="last_name" required>
+                        <div *ngIf="registrationForm.get('last_name').invalid &&  registrationForm.get('last_name').errors &&  (registrationForm.get('last_name').dirty || registrationForm.get('last_name').touched)">
+                            <div class="alert alert-danger"
+                                *ngIf="registrationForm.get('last_name').hasError('required')">
+                                Last name is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rows form-group">
+                    <div class="col-lg-4 text-lg-right">
+                        <label class="Label">Email : </label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" name="email" placeholder="Email"  formControlName="email" required>
+                        <div *ngIf="registrationForm.get('email').invalid &&  registrationForm.get('email').errors &&  (registrationForm.get('email').dirty || registrationForm.get('email').touched)">
+                            <div class="alert alert-danger"
+                                *ngIf="registrationForm.get('email').hasError('required')">
+                                Email is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rows form-group">
+                    <div class="col-lg-4 text-lg-right">
+                        <label class="Label">NIC : </label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control"  name="nic" placeholder="NIC" formControlName="nic"  required>
+                        <div *ngIf="registrationForm.get('nic').invalid &&  registrationForm.get('nic').errors &&  (registrationForm.get('nic').dirty || registrationForm.get('nic').touched)">
+                            <div class="alert alert-danger"
+                                *ngIf="registrationForm.get('nic').hasError('required')">
+                                NIC is required.
+                            </div>
+                        </div>
+                        <input type="file" class="form-control" name="nic_pic" (change)="onNicSelect($event)" placeholder="NIC" required>
+                        <div class="progress form-group" *ngIf="progressnic > 0">
+                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progressnic">
+                            </div>
+                        </div>
+                        <img *ngIf="nic_pic_call_back" src="{{nic_pic_call_back}}" style="width: 200px;"/>
+                        <div *ngIf="nicPicFileError">
+                            <div class="alert alert-danger">
+                                {{nicPicFileErrorMsg}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rows form-group">
+                    <div class="col-lg-4 text-lg-right">
+                        <label class="Label">Profile Picture : </label>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="progress form-group" *ngIf="progress > 0">
+                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+                            </div>
+                        </div>
+                        <input type="file" class="form-control"  name="avatar" (change)="onAvatarSelect($event)" placeholder="Profile picture" required>
+                        <img *ngIf="avatar_call_back" src="{{avatar_call_back}}" style="width: 200px;"/>
+                        <div *ngIf="avatarFileError">
+                            <div class="alert alert-danger">
+                                {{avatarFileErrorMsg}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rows form-group">
+                    <div class="col-lg-4 text-lg-right">
+                        <label class="Label">Contact Number : </label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control"  placeholder="Contact Number" name="phone" formControlName="phone" required>
+                        <div *ngIf="registrationForm.get('phone').invalid &&  registrationForm.get('phone').errors &&  (registrationForm.get('phone').dirty || registrationForm.get('phone').touched)">
+                            <div class="alert alert-danger"
+                                *ngIf="registrationForm.get('phone').hasError('required')">
+                                Phone is required.
+                            </div>
+                        </div>
+                        <div *ngIf="registrationForm.get('phone').hasError('minlength')">
+                            <div class="alert alert-danger">
+                                Phone number must be at least 10 characters long.
+                            </div>
+                        </div>
+                        <div *ngIf="registrationForm.get('phone').hasError('maxlength')">
+                            <div class="alert alert-danger">
+                                Phone number can contain max 10 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rows form-group">
+                    <div class="col-lg-4 text-lg-right">
+                        <label class="Label">Address : </label>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control"  placeholder="Address"  name="address1"  formControlName="address1" required/>
+                                <div *ngIf="registrationForm.get('address1').invalid &&  registrationForm.get('address1').errors &&  (registrationForm.get('address1').dirty || registrationForm.get('address1').touched)">
+                                    <div class="alert alert-danger"
+                                        *ngIf="registrationForm.get('address1').hasError('required')">
+                                        Address is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control"  placeholder="Address"  name="address2"  formControlName="address2"  required/>
+                                <div *ngIf="registrationForm.get('address2').invalid &&  registrationForm.get('address2').errors &&  (registrationForm.get('address2').dirty || registrationForm.get('address2').touched)">
+                                    <div class="alert alert-danger"
+                                        *ngIf="registrationForm.get('address2').hasError('required')">
+                                        Address is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control"  placeholder="Address"  name="address3"   formControlName="address3" required/>
+                                <div *ngIf="registrationForm.get('address3').invalid &&  registrationForm.get('address3').errors &&  (registrationForm.get('address3').dirty || registrationForm.get('address3').touched)">
+                                    <div class="alert alert-danger"
+                                        *ngIf="registrationForm.get('address3').hasError('required')">
+                                        Address is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rows form-group">
+                    <div class="col-lg-4 text-lg-right">
+                      <label class="Label">Password : </label>
+                    </div>
+                    <div class="col-lg-6">
+                      <input type="password" class="form-control" name="password" placeholder="Password"  formControlName="password" required>
+                      <div *ngIf="registrationForm.get('password').invalid &&  registrationForm.get('password').errors &&  (registrationForm.get('password').dirty || registrationForm.get('password').touched)">
+                        <div class="alert alert-danger"
+                            *ngIf="registrationForm.get('password').hasError('required')">
+                            Password is required.
+                        </div>
+                     </div>
+                     <div *ngIf="registrationForm.get('password').hasError('minlength')">
+                        <div class="alert alert-danger">
+                            Password must be at least 6 characters long.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="row rows form-group">
+                    <div class="col-lg-4 text-lg-right">
+                    </div>
+                    <div class="col-lg-6">
+                        <button type="submit" class="btn" [disabled]="registrationForm.invalid">sign up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Blog End -->
+</main>
+<app-web-footer></app-web-footer>

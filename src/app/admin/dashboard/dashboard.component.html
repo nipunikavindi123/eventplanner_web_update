@@ -1,0 +1,70 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Pending Requests</h5>
+              <h1 class="card-text">{{pending_count}}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Accepted Request</h5>
+              <h1 class="card-text">{{accept_count}}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Canceled Request</h5>
+                <h1 class="card-text">{{cancel_count}}</h1>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="row"> 
+          <div class="col-md-12 mt-5">
+            <table class="table  table-hover" *ngIf="request_list?.length > 0 else noEvents">
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Manage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let rl of request_list">
+                    <td>{{rl.customer_id.first_name + " " + rl.customer_id.last_name | titlecase }}</td>
+                    <td>{{rl.date}}</td>
+                    <td>{{rl.time}}</td>
+                    <td>
+                      <span class="btn badge-light">{{rl.status}}</span>
+                    </td>
+                    <td>
+                      <a routerLink="/admin/request-details/{{rl._id}}" class="btn btn-sm btn-primary">View</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <ng-template #noEvents>
+                <div class="col-md-12 mt-5 text-center">
+                    <h3 class="pb-4">No data found</h3>
+                    <img src="../../../assets/images/no_data.svg" class="img-fluid" style="width: 50%;">
+                </div>
+              </ng-template>
+
+          </div>
+      </div>
+</div>
+
+
+

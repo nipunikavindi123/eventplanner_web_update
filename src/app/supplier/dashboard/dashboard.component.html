@@ -1,0 +1,82 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Pending Requests</h5>
+              <h1 class="card-text">{{pending_count}}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Accepted Request</h5>
+              <h1 class="card-text">{{accept_count}}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Canceled Request</h5>
+                <h1 class="card-text">{{cancel_count}}</h1>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="row"> 
+          <div class="col-md-12 mt-5">
+  
+            <div  *ngIf="update_success">
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  Request has been updated successfully!
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+            </div>
+
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th>Manage</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="request_list?.length > 0 else noEvents">
+                <tr *ngFor="let rl of request_list">
+                  <th>{{rl.customer_id.first_name + " " + rl.customer_id.last_name | titlecase }}</th>
+                  <td>{{rl.date}}</td>
+                  <td>{{rl.time}}</td>
+                  <td>
+                    <span class="btn badge-light">{{rl.status}}</span>
+                  </td>
+                  <td>
+                    <a routerLink="/supplier/request-details/{{rl._id}}" class="btn btn-sm btn-primary mr-3">View</a>
+
+                   <button *ngIf="rl.status !='accept'" type="button" class="btn btn-sm btn-success mr-3" (click)="onClickAccept(rl._id);">Accept</button>
+
+                   <button type="button" class="btn btn-sm btn-danger" (click)="onClickCancel(rl._id);">Cancel</button>
+                  </td>
+                </tr>
+              </tbody>
+              <ng-template #noEvents>
+              <tbody>
+                <tr>
+                  <th scope="row">No data found</th>
+                </tr>
+              </tbody>
+              </ng-template>
+            </table>
+
+          </div>
+      </div>
+</div>
+

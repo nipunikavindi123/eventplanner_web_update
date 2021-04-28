@@ -1,0 +1,66 @@
+
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Pending Requests</h5>
+              <h1 class="card-text">{{pending_count}}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Accepted Request</h5>
+              <h1 class="card-text">{{accept_count}}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Canceled Request</h5>
+                <h1 class="card-text">{{cancel_count}}</h1>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="row"> 
+          <div class="col-md-12 mt-5">
+            <table datatable  [dtOptions]="dtOptions" class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="orders?.length != 0">
+                  <tr *ngFor="let odr of orders">
+                    <td>{{odr.supplier_id.first_name + " " + odr.supplier_id.last_name}}</td>
+                    <td>{{odr.date}}</td>
+                    <td>{{odr.time}}</td>
+                    <td><span class="btn badge-light">{{odr.status}}</span></td>
+                    <td>
+                      <a routerLink="/customer/request-details/{{odr._id}}" class="btn btn-sm btn-primary mr-3">View</a>
+
+                      <a *ngIf="odr.payment.status == 'pending'"  routerLink="/customer/request-details/{{odr._id}}" class="btn btn-sm btn-warning">Make Payment</a>
+
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="orders?.length == 0">
+                    <tr>
+                      <td colspan="3" class="no-data-available">No data!</td>
+                    </tr>
+                </tbody>
+              </table>
+          </div>
+      </div>
+</div>

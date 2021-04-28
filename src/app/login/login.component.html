@@ -1,0 +1,83 @@
+<app-navigation></app-navigation>
+
+<div class="bgimg">
+    <div class="container form1">
+      <div class="row">
+        <div class="col-12 text-center">
+            <i class="fas fa-user-lock topimg"></i>
+          <hr>
+        </div>
+      </div>
+      <form (ngSubmit)="onSubmitLogin($event)" [formGroup]="loginForm">
+      <div class="form-group" *ngIf="loginError">
+          <div class="row">
+            <div class="col-12">
+              <div class="alert alert-danger">
+                {{loginErrorMsg}}
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12">
+            <label class="exampleInputUsername">
+            <h5>Email</h5>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <input type="email" name="email" class="form-control" placeholder="Email" formControlName="email" required>
+            <i class="icoa fas fa-user"></i> 
+            <div *ngIf="loginForm.get('email').invalid &&  loginForm.get('email').errors &&  (loginForm.get('email').dirty || loginForm.get('email').touched)">
+              <div class="alert alert-danger"
+                  *ngIf="loginForm.get('email').hasError('required')">
+                  Email is required.
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12">
+            <label class="exampleInputPassword">
+            <h5>Password</h5>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <input type="password"  name="Password"  class="form-control" formControlName="password" placeholder="Password" required>
+            <i class="icoa fas fa-lock"></i>
+            <div *ngIf="loginForm.get('password').invalid &&  loginForm.get('password').errors &&  (loginForm.get('password').dirty || loginForm.get('password').touched)">
+              <div class="alert alert-danger"
+                  *ngIf="loginForm.get('password').hasError('required')">
+                  Password is required.
+              </div>
+           </div>
+          </div>
+          <div class="col-12">
+              <input class="form-check-input"  type="checkbox" name="remember" id="remember">
+              <label class="form-check-label rememberme" for="remember">
+                  Remember Me
+              </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12"> <button type="submit" [disabled]="loginForm.invalid" class="btn btn-outline-light btn-lg btn-block"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp; Login</button> </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+              <a class="btn btn-link" href="">Forgot Your Password?</a>
+          </div>
+      </div>
+      </div>
+     </form>
+    </div>
+  </div>
+
+  <app-web-footer></app-web-footer>
